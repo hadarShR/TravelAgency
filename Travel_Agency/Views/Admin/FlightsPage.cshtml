@@ -1,0 +1,100 @@
+﻿@model Travel_Agency.ViewModel.FlightViewModel
+@using Travel_Agency.Models;
+
+
+@{
+    ViewBag.Title = "Flights";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Flight</title>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div>
+        <left>
+            @using (Html.BeginForm("AddFlight", "Admin", FormMethod.Post))
+            {
+                <br />
+                <br />
+                <br />
+                <br />
+                <b>Id:</b>@Html.TextBoxFor(x => x.flight.id) @Html.ValidationMessageFor(x => x.flight.id)
+                <br />
+                <b>Origin Country:</b>@Html.TextBoxFor(x => x.flight.originCountry) @Html.ValidationMessageFor(x => x.flight.originCountry)
+                <br />
+                <b>Destination:</b>@Html.TextBoxFor(x => x.flight.destination) @Html.ValidationMessageFor(x => x.flight.destination)
+                <br />
+                <b>Date:</b>@Html.TextBoxFor(x => x.flight.Date) @Html.ValidationMessageFor(x => x.flight.Date)
+                <br />
+                <b>Time:</b>@Html.TextBoxFor(x => x.flight.time) @Html.ValidationMessageFor(x => x.flight.time)
+                <br />
+                <b>Price:</b>@Html.TextBoxFor(x => x.flight.price) @Html.ValidationMessageFor(x => x.flight.price)
+                <br />
+                <b>Type:</b>@Html.TextBoxFor(x => x.flight.type) @Html.ValidationMessageFor(x => x.flight.type)
+                <br />
+                <b>One Way Or Two:</b>@Html.TextBoxFor(x => x.flight.oneWayOrTwo) @Html.ValidationMessageFor(x => x.flight.oneWayOrTwo)
+                <br />
+                <b>Tickets:</b>@Html.TextBoxFor(x => x.flight.tickets) @Html.ValidationMessageFor(x => x.flight.tickets)
+                <br />
+
+                <input id="Submit1" type="submit" value="Add Flight" />
+            }
+        </left>
+
+        <right>
+            
+            <form action="RemoveFlight" method="post">
+                <label>Remove Id:  </label> <br />
+                <input type="text" name="searchQuery" /><br />
+                <input type="submit" value="Remove Flight" /> <br />
+
+            </form>
+            
+        </right>
+
+
+
+
+        @if (Model.flightsList != null)
+        {
+            <h1>Flights Table</h1>
+            <table>
+                <tr>
+                    <th>ID  </th>
+                    <th>Origin Country  </th>
+                    <th>Dstination  </th>
+                    <th>Date  </th>
+                    <th>Time  </th>
+                    <th>Price  </th>
+                    <th>Type  </th>
+                    <th>One Way Or Two  </th>
+                    <th>Tickets  </th>
+                </tr>
+
+                @foreach (Flight flight in Model.flightsList)
+                {
+                    <tr>
+                        <th>@flight.id</th>
+                        <th>@flight.originCountry</th>
+                        <th>@flight.destination</th>
+                        <th>@flight.Date</th>
+                        <th>@flight.time</th>
+                        <th>@flight.price</th>
+                        <th>@flight.type</th>
+                        <th>@flight.oneWayOrTwo</th>
+                        <th>@flight.tickets</th>
+                    </tr>
+
+                }
+            </table>
+        }
+    </div>
+</body>
+</html>
