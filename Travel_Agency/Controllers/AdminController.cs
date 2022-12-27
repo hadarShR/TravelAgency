@@ -101,10 +101,11 @@ namespace Travel_Agency.Controllers
             svm.flight = new Flight();
             svm.flightsList = 
                 (from x in dal.flights where x.id.Contains(myQuery) select x).ToList<Flight>();
-            return svm.flights;
+            return svm.flight;
         }
 
-        //1111111111111111111111111
+        
+
 
     }
 }
